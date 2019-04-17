@@ -1,0 +1,16 @@
+li {
+    font-size: 22px;
+}
+
+.active {
+    color: red;
+}
+
+.archive {
+    color: gray;
+    text-decoration: line-through;
+}
+
+.isHidden {
+    display: none;
+}
