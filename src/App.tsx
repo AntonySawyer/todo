@@ -34,35 +34,49 @@ class App extends Component<int.IAppProps> {
     }
   }
 
-  hideDone() {
-    const targets = document.querySelectorAll('.archive');
-    if (this.state.isHidden) {
-      targets.forEach(el => {
-        el.classList.remove('isHidden');
-      });
+  hideTarget(toHide: string) {
+    const archive = document.querySelectorAll('.archive');
+    const active = document.querySelectorAll('.active');
+    if (toHide === 'archive') {
+      active.forEach(el => {el.classList.remove('isHidden')});
+      archive.forEach(el => {el.classList.add('isHidden')});
+    } else if (toHide === 'active') {
+      active.forEach(el => {el.classList.add('isHidden')});
+      archive.forEach(el => {el.classList.remove('isHidden')});
     } else {
-      targets.forEach(el => {
-        el.classList.add('isHidden');
-      }); 
+      active.forEach(el => {el.classList.remove('isHidden')});
+      archive.forEach(el => {el.classList.remove('isHidden')});
     }
     this.state.isHidden = !this.state.isHidden;
   }
 
   fillInput = (content: string) => {this.taskInput.value = content; this.taskInput.focus();};
 
+  deleteTask(id: string) {
+    this.props.dispatch && this.props.dispatch({type: 'DELETE_TASK', payload: id});
+  }
+
+  markAsDone(id: string) {
+    this.props.dispatch && this.props.dispatch({type: 'COMPLETE_TASK', payload: id});
+  }
+
+  editTask(target: {id: string, task: string}) {
+    const currenTitle = target.task;
+    this.fillInput(currenTitle);
+    this.props.dispatch && this.props.dispatch({type: 'DELETE_TASK', payload: target.id});
+  }
+
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header addTask={this.addTask.bind(this)} 
+                deleteCompleted={this.deleteCompleted.bind(this)}
+                sortCompleted={this.sortCompleted.bind(this)} />
         <div className="inputGroup">
           <label className="taskInputLabel">Enter new task</label>
           <input type="text" className="taskInput" placeholder="Enter new task" 
                   ref={(input: HTMLInputElement) => {this.taskInput = input}} 
                   onKeyPress={this.onKeyDown} />
-          <button onClick={this.addTask.bind(this)}>Add</button>
-          <button onClick={this.deleteCompleted.bind(this)}>del mark</button>
-          <button onClick={this.sortCompleted.bind(this)}>sort done</button>     
-          <button onClick={this.hideDone.bind(this)}>{this.state.isHidden ? 'show done' : 'hide done'}</button>
         </div>
         <ul>
           {this.props.tasks.map(el =>
@@ -70,10 +84,14 @@ class App extends Component<int.IAppProps> {
                 id={el.id}
                 isDone={el.isDone}
                 task={el.task} 
-                dispatch={this.props.dispatch} fillInput={this.fillInput.bind(this.taskInput)} />
+                deleteTask={this.deleteTask.bind(this)}
+                editTask={this.editTask.bind(this)}
+                markAsDone={this.markAsDone.bind(this)} />
             )}
         </ul>
-        <Footer />
+        <Footer total={this.props.tasks.length} 
+                arhive={this.props.tasks.filter(el => el.isDone).length} 
+                filter={this.hideTarget.bind(this)} />
       </div>
     );
   }
