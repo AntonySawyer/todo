@@ -8,13 +8,20 @@ li {
     color: darkblue;
 }
 
+.archive span {
+  text-decoration: line-through;
+}
+
 .archive > span {
     color: gray;
-    text-decoration: line-through;
 }
 
 .isHidden {
     display: none;
+}
+
+.infoGroup {
+  width: 65px;
 }
 
 .taskBtn {
@@ -23,10 +30,13 @@ li {
     margin: 1px;
     font-size: 20px;
     border: none;
-}
+    width: 25px;
+    height: 25px;
+    vertical-align: bottom;
+  }
 
 .taskBtn:hover {
-    background-color: rgb(13, 141, 154);
+    background-color: rgba(13, 141, 154);
 }
 
 .taskTitle {
@@ -95,3 +105,21 @@ li {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
+.creationDate {
+  font-size: 10px;
+  padding: 3px;
+}
+
+.active .creationDate {
+  background-color: rgba(13, 141, 154, 0.1);
+  border: rgba(13, 141, 154, 0.46) 1px solid;
+  border-radius: 10px;
+}
+
+.archive .creationDate {
+  background-color: rgba(108, 112, 111, 0.63);
+  border: rgba(108, 112, 111, 0.46) 1px solid;
+  border-radius: 10px;
+  color: antiquewhite;
+}

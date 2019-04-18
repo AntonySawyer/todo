@@ -1,5 +1,5 @@
 import * as React from 'react';
-import logo from '../../logo.png';
+import logo from '../../logo.svg';
 import * as int from '../../interfaces';
 import './Header.css';
 

@@ -2,7 +2,7 @@ import * as int from '../interfaces';
 
 export const loadState = () => {
     try {
-      const serializedState = localStorage.getItem('state');
+      const serializedState = localStorage.getItem('todoListState');
       if (serializedState === null) {
         return undefined;
       }
@@ -10,14 +10,13 @@ export const loadState = () => {
     } catch (err) {
       return undefined;
     }
-  }; 
+  };
 
 export const saveState = (state: int.ITask[]) => {
     try {
       const serializedState = JSON.stringify(state);
-      localStorage.setItem('state', serializedState);
+      localStorage.setItem('todoListState', serializedState);
     } catch {
       // ignore write errors
     }
   };
-
