@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { JSXElementConstructor } from 'react';
 
 export interface ITask {
     id: string,
@@ -28,5 +29,6 @@ export interface IFooter {
 export interface IHeader {
     sortCompleted: () => void,
     deleteCompleted: () => void,
-    addTask: () => void
+    addTask: () => void,
+    inputGroup: () => void
 }

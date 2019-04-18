@@ -53,17 +53,27 @@ class App extends Component<int.IAppProps> {
   fillInput = (content: string) => {this.taskInput.value = content; this.taskInput.focus();};
 
   deleteTask(id: string) {
-    this.props.dispatch && this.props.dispatch({type: 'DELETE_TASK', payload: id});
+    this.props.dispatch({type: 'DELETE_TASK', payload: id});
   }
 
   markAsDone(id: string) {
-    this.props.dispatch && this.props.dispatch({type: 'COMPLETE_TASK', payload: id});
+    this.props.dispatch({type: 'COMPLETE_TASK', payload: id});
   }
 
   editTask(target: {id: string, task: string}) {
     const currenTitle = target.task;
     this.fillInput(currenTitle);
-    this.props.dispatch && this.props.dispatch({type: 'DELETE_TASK', payload: target.id});
+    this.props.dispatch({type: 'DELETE_TASK', payload: target.id});
+  }
+
+  inputGroup () {
+    return (
+      <div className="inputGroup">
+        <input type="text" className="taskInput" placeholder="Enter new task" 
+                ref={(input: HTMLInputElement) => {this.taskInput = input}} 
+                onKeyPress={this.onKeyDown} />
+      </div>
+    )
   }
 
   render() {
@@ -71,24 +81,22 @@ class App extends Component<int.IAppProps> {
       <div className="App">
         <Header addTask={this.addTask.bind(this)} 
                 deleteCompleted={this.deleteCompleted.bind(this)}
-                sortCompleted={this.sortCompleted.bind(this)} />
-        <div className="inputGroup">
-          <label className="taskInputLabel">Enter new task</label>
-          <input type="text" className="taskInput" placeholder="Enter new task" 
-                  ref={(input: HTMLInputElement) => {this.taskInput = input}} 
-                  onKeyPress={this.onKeyDown} />
-        </div>
-        <ul>
-          {this.props.tasks.map(el =>
-              <TaskItem key={el.id}
-                id={el.id}
-                isDone={el.isDone}
-                task={el.task} 
-                deleteTask={this.deleteTask.bind(this)}
-                editTask={this.editTask.bind(this)}
-                markAsDone={this.markAsDone.bind(this)} />
-            )}
-        </ul>
+                sortCompleted={this.sortCompleted.bind(this)} 
+                inputGroup={this.inputGroup.bind(this)} />
+        <main>
+ 
+          <ul>
+            {this.props.tasks.map(el =>
+                <TaskItem key={el.id}
+                  id={el.id}
+                  isDone={el.isDone}
+                  task={el.task} 
+                  deleteTask={this.deleteTask.bind(this)}
+                  editTask={this.editTask.bind(this)}
+                  markAsDone={this.markAsDone.bind(this)} />
+              )}
+          </ul>
+        </main>
         <Footer total={this.props.tasks.length} 
                 arhive={this.props.tasks.filter(el => el.isDone).length} 
                 filter={this.hideTarget.bind(this)} />

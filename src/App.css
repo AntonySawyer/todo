@@ -1,64 +1,39 @@
 .App {
-  text-align: center;
+  margin: 0 auto;
+  height: -webkit-fill-available;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.inputGroup {
-  position: relative;
-  padding-top: 1.5rem;
-}
-
-.taskInput {
-  width: 250px;
-  height: 35px;
-  font-size: 20px;
-  border: none;
-  border-bottom: 2px solid red;
-  outline: none;
-}
-
-.taskInput:focus {
-  border-bottom: 2px solid #555;
-}
-
-.taskInputLabel {
-  position: absolute;
-  top: 0;
-  left: 20%;
-  font-size: var(--font-size-small);
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.2s ease-out;
-}
-
-.taskInput:placeholder-shown + label {
-  opacity: 0;
-  transform: translateY(1rem);
+main {
+  overflow: auto;
+  height: -webkit-fill-available;
 }
 
 ul {
   display: flex;
   flex-direction: column-reverse;
   list-style: none;
+  padding: 5px;
+}
+
+li {
+  display: flex;
 }
 
 button {
   background-color: white;
   color: black;
-  border: 2px solid #4CAF50; /* Green */
+  border: 2px solid rgb(13, 141, 154);
   border-radius: 12px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
 
-img {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-  width: 150px;
-}
-
 button:hover {
-  background-color: #4CAF50; /* Green */
+  background-color: rgb(13, 141, 154);
   color: white;
   cursor: pointer;
 }
