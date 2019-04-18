@@ -19,10 +19,6 @@ ul {
   padding: 5px;
 }
 
-li {
-  display: flex;
-}
-
 button {
   background-color: white;
   color: black;
@@ -36,4 +32,9 @@ button:hover {
   background-color: rgb(13, 141, 154);
   color: white;
   cursor: pointer;
+}
+
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
 }

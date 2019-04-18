@@ -69,7 +69,7 @@ class App extends Component<int.IAppProps> {
   inputGroup () {
     return (
       <div className="inputGroup">
-        <input type="text" className="taskInput" placeholder="Enter new task" 
+        <input type="text" className="taskInput" placeholder="Enter new task ⏎" 
                 ref={(input: HTMLInputElement) => {this.taskInput = input}} 
                 onKeyPress={this.onKeyDown} />
       </div>
