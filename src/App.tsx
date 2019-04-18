@@ -91,6 +91,7 @@ class App extends Component<int.IAppProps> {
                   id={el.id}
                   isDone={el.isDone}
                   task={el.task} 
+                  creationDate={el.creationDate}
                   deleteTask={this.deleteTask.bind(this)}
                   editTask={this.editTask.bind(this)}
                   markAsDone={this.markAsDone.bind(this)} />

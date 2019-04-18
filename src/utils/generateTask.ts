@@ -5,6 +5,7 @@ function getID() {
 export default function(taskName: string) {
     if (taskName !== '') {
         return {
+            creationDate: new Date().toLocaleString('ru', { day: 'numeric', month: 'numeric', year: 'numeric' }),
             id: getID(),
             isDone: false,
             task: taskName

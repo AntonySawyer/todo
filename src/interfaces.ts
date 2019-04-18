@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
-import { JSXElementConstructor } from 'react';
 
 export interface ITask {
+    creationDate: Date,
     id: string,
     isDone: boolean,
     task: string,
