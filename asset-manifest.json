@@ -1,5 +1,5 @@
 {
-  "main.css": "/todo/static/css/main.8b015baa.chunk.css",
+  "main.css": "/todo/static/css/main.f73d30a6.chunk.css",
   "main.js": "/todo/static/js/main.7b502379.chunk.js",
   "main.js.map": "/todo/static/js/main.7b502379.chunk.js.map",
   "runtime~main.js": "/todo/static/js/runtime~main.7a2dc5ec.js",
@@ -7,8 +7,8 @@
   "static/js/2.462483ac.chunk.js": "/todo/static/js/2.462483ac.chunk.js",
   "static/js/2.462483ac.chunk.js.map": "/todo/static/js/2.462483ac.chunk.js.map",
   "index.html": "/todo/index.html",
-  "precache-manifest.da80794b2cb669bc4223243cd09b6985.js": "/todo/precache-manifest.da80794b2cb669bc4223243cd09b6985.js",
+  "precache-manifest.bfde12edc53d8df5c80c191204c9ee83.js": "/todo/precache-manifest.bfde12edc53d8df5c80c191204c9ee83.js",
   "service-worker.js": "/todo/service-worker.js",
-  "static/css/main.8b015baa.chunk.css.map": "/todo/static/css/main.8b015baa.chunk.css.map",
+  "static/css/main.f73d30a6.chunk.css.map": "/todo/static/css/main.f73d30a6.chunk.css.map",
   "static/media/logo.svg": "/todo/static/media/logo.bfea3f98.svg"
 }
