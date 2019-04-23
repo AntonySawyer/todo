@@ -12,13 +12,13 @@ class TaskItem extends React.Component<int.ITask> {
                             onChange={(e) => this.props.markAsDone(this.props.id)} />
                     <span className="checkmark" />
                 </label>
-
+                <span className="taskColorMark" style={{'background': this.props.color}} />
                 <span className="taskTitle">{this.props.task}</span>
                 <div className="infoGroup">
                     <span className="creationDate">{this.props.creationDate}</span>
                     <button className="taskBtn" onClick={(e) => this.props.deleteTask(this.props.id)} 
                             title="Delete task">×</button>
-                    <button className="taskBtn" onClick={(e) => this.props.editTask({id: this.props.id, task: this.props.task})}
+                    <button className="taskBtn" onClick={(e) => this.props.editTask({id: this.props.id, task: this.props.task, color: this.props.color})}
                     title="Edit task">✍</button>
                 </div>
             </li>

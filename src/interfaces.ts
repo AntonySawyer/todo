@@ -4,11 +4,18 @@ export interface ITask {
     creationDate: Date,
     id: string,
     isDone: boolean,
+    color: string,
     task: string,
     deleteTask: (id: string) => void;
-    editTask: (target: {id: string, task: string}) => void;
+    editTask: (target: editTask) => void;
     markAsDone: (id: string) => void;
 };
+
+export interface editTask {
+    id: string,
+    task: string,
+    color: string
+}
 
 export interface IAction {
     type: string,

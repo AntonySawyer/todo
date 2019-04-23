@@ -12,7 +12,15 @@ ul {
 
 ul:empty:after {
   padding: 30px 10px;
-  content: 'Nothing there, but you can add something below.';
+  content: 'Nothing there, but you can add something above.';
   font-size: 32px;
   text-align: center;
+}
+
+ul li[value="#62bfbf"] {
+  background-color: #62bfbf;
+}
+
+ul li[value="#2196F3"] {
+  background-color: #2196F3;
 }

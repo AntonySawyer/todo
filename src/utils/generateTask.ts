@@ -2,13 +2,14 @@ function getID() {
     return (Math.random()*1000).toFixed(4).toString();
 }
 
-export default function(taskName: string) {
-    if (taskName !== '') {
+export default function(task: string[]) {
+    if (task[0] !== '') {
         return {
             creationDate: new Date().toLocaleString('ru', { day: 'numeric', month: 'numeric', year: 'numeric' }),
             id: getID(),
             isDone: false,
-            task: taskName
+            color: task[1],
+            task: task[0]
         }
     }
 }

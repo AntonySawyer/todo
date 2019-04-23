@@ -14,10 +14,13 @@ class App extends Component<int.IAppProps> {
   }
 
   taskInput!: HTMLInputElement;
+  colorInput!: HTMLInputElement;
+
   addTask() {
     const newTask = this.taskInput.value;
-    this.fillInput('');
-    newTask && this.props.dispatch({type: 'ADD_TASK', payload: generateNewTask(newTask)});
+    const newColor = this.colorInput.value;
+    this.fillInput(['', newColor]);
+    newTask && this.props.dispatch({type: 'ADD_TASK', payload: generateNewTask([newTask, newColor])});
   }
 
   deleteCompleted() {
@@ -53,7 +56,11 @@ class App extends Component<int.IAppProps> {
     this.state.isHidden = !this.state.isHidden;
   }
 
-  fillInput = (content: string) => {this.taskInput.value = content; this.taskInput.focus();};
+  fillInput = (content: string[]) => {
+    this.taskInput.value = content[0];
+    this.taskInput.focus();
+    this.colorInput.value = content[1] || "#62bfbf";
+  };
 
   deleteTask(id: string) {
     this.props.dispatch({type: 'DELETE_TASK', payload: id});
@@ -63,9 +70,8 @@ class App extends Component<int.IAppProps> {
     this.props.dispatch({type: 'COMPLETE_TASK', payload: id});
   }
 
-  editTask(target: {id: string, task: string}) {
-    const currenTitle = target.task;
-    this.fillInput(currenTitle);
+  editTask(target: int.editTask) {
+    this.fillInput([target.task, target.color]);
     this.props.dispatch({type: 'DELETE_TASK', payload: target.id});
   }
 
@@ -76,6 +82,8 @@ class App extends Component<int.IAppProps> {
                 required pattern="\S+"
                 ref={(input: HTMLInputElement) => {this.taskInput = input}} 
                 onKeyPress={this.onKeyDown} />
+        <input type="color" className="taskColorPicker" defaultValue="#62bfbf"
+                ref={(input: HTMLInputElement) => {this.colorInput = input}} />
         <button className="taskInputBtn" title="Add new task"
                 onClick={this.addTask.bind(this)}>Add</button>
       </div>
@@ -87,12 +95,12 @@ class App extends Component<int.IAppProps> {
       <div className="App">
         <Header inputGroup={this.inputGroup.bind(this)} />
         <main>
-
           <ul>
             {this.props.tasks.map(el =>
                 <TaskItem key={el.id}
                   id={el.id}
                   isDone={el.isDone}
+                  color={el.color}
                   task={el.task} 
                   creationDate={el.creationDate}
                   deleteTask={this.deleteTask.bind(this)}

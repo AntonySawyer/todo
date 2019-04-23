@@ -40,7 +40,21 @@ header {
   color: gainsboro;
 }
 
+.taskColorPicker {
+  position: absolute;
+  bottom: 0;
+  right: 50px;
+  border: none;
+  padding-left: 20px;
+  margin-right: 8%;
+  font-size: 16px;
+  background-color: transparent;
+  color: gainsboro;
+}
+
 .taskInput:not(:placeholder-shown) ~ .taskInputBtn,
+.taskInput:not(:placeholder-shown) ~ .taskColorPicker,
+.taskInput:focus ~ .taskColorPicker,
 .taskInput:focus ~ .taskInputBtn {
   bottom: 20px;
 }
