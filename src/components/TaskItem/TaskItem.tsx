@@ -14,11 +14,16 @@ class TaskItem extends React.Component<int.ITask> {
                 </label>
 
                 <span className="taskTitle">{this.props.task}</span>
-                <button className="taskBtn" onClick={(e) => this.props.deleteTask(this.props.id)} title="Delete task">×</button>
-                <button className="taskBtn" onClick={(e) => this.props.editTask({id: this.props.id, task: this.props.task})} title="Edit task">✎</button>
+                <div className="infoGroup">
+                    <span className="creationDate">{this.props.creationDate}</span>
+                    <button className="taskBtn" onClick={(e) => this.props.deleteTask(this.props.id)} 
+                            title="Delete task">×</button>
+                    <button className="taskBtn" onClick={(e) => this.props.editTask({id: this.props.id, task: this.props.task})}
+                    title="Edit task">✍</button>
+                </div>
             </li>
         );
-      }
+    }
 }
 
 export default TaskItem;

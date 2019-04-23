@@ -6,9 +6,20 @@ class Footer extends React.Component<int.IFooter> {
     render() {
         return ( 
             <footer>
-                <button onClick={this.props.filter.bind(this, '')} title="Show all">Total = {this.props.total}</button>
-                <button onClick={this.props.filter.bind(this, 'archive')} title="Show only active">Active = {this.props.total - this.props.arhive}</button>
-                <button onClick={this.props.filter.bind(this, 'active')} title="Show only archived">Archived = {this.props.arhive}</button>
+                    <input type="radio" name="menuRadio" id="showViewed" className="showViewed" defaultChecked />
+                    <label htmlFor="showViewed">Filters</label>
+                    <input type="radio" name="menuRadio" id="showControl" className="showControl" />
+                    <label htmlFor="showControl">Controls</label>
+                    <div className="control">
+                        <button onClick={this.props.deleteCompleted} title="Delete marked">Delete</button>
+                        <button onClick={this.props.sortCompleted} title="Active to top">Sort done</button>
+                        <button onClick={this.props.sortByDate} title="First fresh">Sort by date</button>
+                    </div>
+                    <div className="viewed">
+                        <button onClick={this.props.filter.bind(this, '')} title="Show all">Total (<b>{this.props.total}</b>)</button>
+                        <button onClick={this.props.filter.bind(this, 'archive')} title="Show only active">Active (<b>{this.props.total - this.props.arhive}</b>)</button>
+                        <button onClick={this.props.filter.bind(this, 'active')} title="Show only archived">Archive (<b>{this.props.arhive}</b>)</button>
+                    </div>
             </footer>
         );
       }

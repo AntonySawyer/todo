@@ -27,6 +27,9 @@ class App extends Component<int.IAppProps> {
   sortCompleted() {
     this.props.dispatch({type: 'SORT_COMPLETED', payload: ''});
   }
+  sortByDate() {
+    this.props.dispatch({type: 'SORT_BY_DATE', payload: ''});
+  }
 
   onKeyDown = (e: any) => {
     if (e.key === 'Enter') {
@@ -70,8 +73,11 @@ class App extends Component<int.IAppProps> {
     return (
       <div className="inputGroup">
         <input type="text" className="taskInput" placeholder="Enter new task ⏎" 
+                required pattern="\S+"
                 ref={(input: HTMLInputElement) => {this.taskInput = input}} 
                 onKeyPress={this.onKeyDown} />
+        <button className="taskInputBtn" title="Add new task"
+                onClick={this.addTask.bind(this)}>Add</button>
       </div>
     )
   }
@@ -79,18 +85,16 @@ class App extends Component<int.IAppProps> {
   render() {
     return (
       <div className="App">
-        <Header addTask={this.addTask.bind(this)} 
-                deleteCompleted={this.deleteCompleted.bind(this)}
-                sortCompleted={this.sortCompleted.bind(this)} 
-                inputGroup={this.inputGroup.bind(this)} />
+        <Header inputGroup={this.inputGroup.bind(this)} />
         <main>
- 
+
           <ul>
             {this.props.tasks.map(el =>
                 <TaskItem key={el.id}
                   id={el.id}
                   isDone={el.isDone}
                   task={el.task} 
+                  creationDate={el.creationDate}
                   deleteTask={this.deleteTask.bind(this)}
                   editTask={this.editTask.bind(this)}
                   markAsDone={this.markAsDone.bind(this)} />
@@ -99,7 +103,10 @@ class App extends Component<int.IAppProps> {
         </main>
         <Footer total={this.props.tasks.length} 
                 arhive={this.props.tasks.filter(el => el.isDone).length} 
-                filter={this.hideTarget.bind(this)} />
+                filter={this.hideTarget.bind(this)} 
+                deleteCompleted={this.deleteCompleted.bind(this)}
+                sortCompleted={this.sortCompleted.bind(this)} 
+                sortByDate={this.sortByDate.bind(this)} />
       </div>
     );
   }
