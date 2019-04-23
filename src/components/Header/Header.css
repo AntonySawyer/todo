@@ -45,7 +45,6 @@ header {
   bottom: 0;
   right: 50px;
   border: none;
-  padding-left: 20px;
   margin-right: 8%;
   font-size: 16px;
   background-color: transparent;
@@ -62,3 +61,20 @@ header {
 .taskInputBtn:hover {
   cursor: pointer;
 }
+
+@media only screen 
+  and (max-device-width: 736px)
+  and (orientation: landscape) {
+    header {
+      height: 85px;
+    }
+    main {
+      margin-top: 85px;
+    }
+    .logo {
+      width: 29px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+  }
