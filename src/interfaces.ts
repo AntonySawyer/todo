@@ -23,12 +23,12 @@ export interface IAppProps {
 export interface IFooter {
     total: number,
     arhive: number,
-    filter: (toHide: string) => void
+    filter: (toHide: string) => void,
+    sortCompleted: () => void,
+    deleteCompleted: () => void,
+    sortByDate: () => void
 };
 
 export interface IHeader {
-    sortCompleted: () => void,
-    deleteCompleted: () => void,
-    addTask: () => void,
     inputGroup: () => void
 }

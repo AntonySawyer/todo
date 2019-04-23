@@ -1,11 +1,112 @@
 footer {
-    left: 0;
+    position: fixed;
     bottom: 0;
+    background: white;
     width: 100%;
-    background-color: white;
-    min-height: 50px;
-    padding: 15px 0;
-    overflow: auto;
+    max-width: 768px;
+    height: 60px;
+    z-index: 1;
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid darkslateblue;
+    padding-top: 3px;
+}
+.control,
+.viewed {
+    float: right;
+    padding: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+footer button {
+    background: transparent;
+    border: 1px solid cornflowerblue;
+    margin: 0 2px;
+    height: 100%;
+}
+
+footer button:hover {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+@media only screen 
+    and (min-device-width: 400px)  {
+        footer input[type="radio"],
+        footer label {
+            display: none;
+        }
+    }
+/* Portrait */
+@media only screen 
+  and (max-device-width: 400px) {
+    .control,
+    .viewed {
+        display: none;
+        width: 80%;
+    }
+    
+    .showControl:checked ~ .control {
+        display: flex;
+    }
+    
+    .showViewed:checked ~ .viewed {
+        display: flex;
+    }
+    
+    input[type="radio"] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        margin: 10px 0 0 7px;
+      }
+    
+    input[type="radio"] + label {
+        padding: 5px 5px 5px 30px;
+        cursor: pointer;
+        height: 22px;
+        width: 60px;
+    }
+    
+    label[for="showControl"] {
+        align-self: flex-end;
+        position: absolute;
+    }
+    
+    input[type="radio"] + label:before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 2px;
+        width: 22px;
+        height: 22px;
+        border: 1px solid #CDD1DA;
+        border-radius: 50%;
+        background: #FFF;
+    }
+    
+      input[type="radio"] + label:after {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 6px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #62bfbf;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.5);
+        opacity: 0;
+        transition: .2s;
+    }
+    
+    input[type="radio"]:checked + label:after {
+        opacity: 1;
+    }
+    
+    footer button {
+        padding: 0;
+        flex-basis: 100%;
+    }
 }
