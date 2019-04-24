@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import * as int from './interfaces';
+import Sidebar from './components/Sidebar/Sidebar';
 import TaskItem from './components/TaskItem/TaskItem';
 import generateNewTask from './utils/generateTask';
 import Footer from './components/Footer/Footer';
@@ -21,6 +22,10 @@ class App extends Component<int.IAppProps> {
     const newColor = this.colorInput.value;
     this.fillInput(['', newColor]);
     newTask && this.props.dispatch({type: 'ADD_TASK', payload: generateNewTask([newTask, newColor])});
+  }
+
+  changeStar(id: string) {
+    this.props.dispatch({type: 'CHANGE_STAR', payload: id});
   }
 
   deleteCompleted() {
@@ -49,11 +54,14 @@ class App extends Component<int.IAppProps> {
     } else if (toHide === 'active') {
       active.forEach(el => {el.classList.add('isHidden')});
       archive.forEach(el => {el.classList.remove('isHidden')});
+    } else if (toHide === 'notFavorite') {
+      active.forEach(el => {el.classList.contains('isFavorite') ? el.classList.remove('isHidden') : el.classList.add('isHidden')});
+      archive.forEach(el => {el.classList.contains('isFavorite') ? el.classList.remove('isHidden') : el.classList.add('isHidden')});
     } else {
-      active.forEach(el => {el.classList.remove('isHidden')});
-      archive.forEach(el => {el.classList.remove('isHidden')});
-    }
-    this.state.isHidden = !this.state.isHidden;
+    active.forEach(el => {el.classList.remove('isHidden')});
+    archive.forEach(el => {el.classList.remove('isHidden')});
+  }
+  this.state.isHidden = !this.state.isHidden;
   }
 
   fillInput = (content: string[]) => {
@@ -95,22 +103,26 @@ class App extends Component<int.IAppProps> {
       <div className="App">
         <Header inputGroup={this.inputGroup.bind(this)} />
         <main>
+          <Sidebar />
           <ul>
             {this.props.tasks.map(el =>
                 <TaskItem key={el.id}
                   id={el.id}
                   isDone={el.isDone}
+                  favorite={el.favorite}
                   color={el.color}
                   task={el.task} 
                   creationDate={el.creationDate}
                   deleteTask={this.deleteTask.bind(this)}
                   editTask={this.editTask.bind(this)}
-                  markAsDone={this.markAsDone.bind(this)} />
+                  markAsDone={this.markAsDone.bind(this)} 
+                  changeStar={this.changeStar.bind(this)} />
               )}
           </ul>
         </main>
         <Footer total={this.props.tasks.length} 
                 arhive={this.props.tasks.filter(el => el.isDone).length} 
+                favorite={this.props.tasks.filter(el => el.favorite).length} 
                 filter={this.hideTarget.bind(this)} 
                 deleteCompleted={this.deleteCompleted.bind(this)}
                 sortCompleted={this.sortCompleted.bind(this)} 

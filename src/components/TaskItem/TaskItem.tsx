@@ -4,7 +4,7 @@ import './TaskItem.css';
 
 class TaskItem extends React.Component<int.ITask> {
     public render() {
-        const liClassName: string = this.props.isDone ? 'archive' : 'active';
+        const liClassName: string = (this.props.isDone ? 'archive' : 'active').concat(this.props.favorite ? ' isFavorite' : '');
         return ( 
             <li className={liClassName} id={this.props.id}>
                 <label className="checkContainer">
@@ -12,10 +12,16 @@ class TaskItem extends React.Component<int.ITask> {
                             onChange={(e) => this.props.markAsDone(this.props.id)} />
                     <span className="checkmark" />
                 </label>
-                <span className="taskColorMark" style={{'background': this.props.color}} />
-                <span className="taskTitle">{this.props.task}</span>
-                <div className="infoGroup">
-                    <span className="creationDate">{this.props.creationDate}</span>
+                <div className="taskBox">
+                    <div className="taskInfoGroup">
+                        <span className="taskColorMark" style={{'background': this.props.color}}>category</span>
+                        <span className="creationDate">{this.props.creationDate}</span>
+                        <input type="checkbox" checked={this.props.favorite} id={this.props.id} 
+                                className="favorite" onChange={(e) => this.props.changeStar(this.props.id)} />                        
+                    </div>
+                    <span className="taskTitle">{this.props.task}</span>                
+                </div>
+                <div className="taskControl">
                     <button className="taskBtn" onClick={(e) => this.props.deleteTask(this.props.id)} 
                             title="Delete task">×</button>
                     <button className="taskBtn" onClick={(e) => this.props.editTask({id: this.props.id, task: this.props.task, color: this.props.color})}

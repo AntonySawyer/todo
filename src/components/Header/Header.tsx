@@ -5,15 +5,24 @@ import './Header.css';
 
 
 class Header extends React.Component<int.IHeader> {
+    showSideBar() {
+        const sideBar = document.querySelectorAll('.sideBar')[0];
+        if (sideBar.classList.contains('isHidden')) {
+            sideBar.classList.remove('isHidden');
+        } else {
+            sideBar.classList.add('isHidden');
+        }
+    }
     render() {
         return ( 
             <header>
+                <button className="menuBar" onClick={this.showSideBar}>☰</button>
                 <img src={logo} alt="logo" className="logo" />
                 <h1>ToDo List</h1>
                 {this.props.inputGroup()}
             </header>
         );
-      }
+    }
 }
 
 export default Header;

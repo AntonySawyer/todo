@@ -2,14 +2,68 @@ li {
   border-bottom: aliceblue 1px solid;
   max-width: 768px;
   padding: 2px 0;
-  overflow-wrap: break-word;
-  overflow: hidden;
   display: flex;
+  justify-content: space-between;
+}
+
+.taskBox {
+  flex-basis: 80%;
+  margin-left: 38px;
+}
+
+.taskColorMark {
+  width: 56px;
+  height: 6px;
+  display: inline-block;
+  font-size: 12px;
+  color: #ffffff;
+  padding: 0 0 9px 2px;
+}
+
+.creationDate {
+  font-size: 9px;
+  margin-left: 3px;
+} 
+
+.active .creationDate {
+  color: lightslategrey;
+}
+
+.archive .creationDate {
+  border: 1px solid lightgrey;
+  background-color: #ccc;
+  color: darkslategray;
+}
+
+.isFavorite {
+  background: #f1da36; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #f1da36 2%, #fefcea 52%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #f1da36 2%,#fefcea 52%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #f1da36 2%,#fefcea 52%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1da36', endColorstr='#fefcea',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.favorite {
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.favorite:before {
+  content: "\2606";
+  position: absolute;
+  font-size: 19px;
+  visibility: visible;
+  line-height: 0.7;
+  color: darkslategray;
+}
+
+.favorite:checked:before {
+  content: "\2605";
+  position: absolute;
+  color: orange;
 }
 
 .taskTitle {
-  flex-basis: 80%;
-  margin-left: 38px;
   text-indent: 9px;
   overflow-wrap: break-word;
   overflow: hidden;
@@ -25,8 +79,27 @@ li {
   color: gray;
 }
 
-.isHidden {
-  display: none; 
+.taskControl {
+  display: flex;
+  flex-basis: 5%;
+  flex-wrap: wrap;
+  margin-right: 7%;
+  flex-direction: row-reverse;
+  align-content: baseline;
+}
+
+.taskBtn {
+  height: 22px;
+  background: transparent;
+  border: 1px solid deepskyblue;
+  margin: 1px auto;
+  width: 22px;
+}
+
+.taskBtn:hover {
+  cursor: pointer;
+  background-color: deepskyblue;
+  color: white;
 }
 
 .checkContainer {
@@ -88,51 +161,3 @@ li {
   display: block;
 }
 
-.infoGroup {
-  display: flex;
-  flex-basis: 5%;
-  flex-wrap: wrap;
-  margin-right: 7%;
-  flex-direction: row-reverse;
-  align-content: baseline;
-}
-
-.creationDate {
-  font-size: 11px;
-  min-width: 50px;
-  border-radius: px;
-  height: 11px;
-  line-height: 1;
-  margin-bottom: 4px;
-} 
-
-.active .creationDate {
-  border: 1px solid #62bfbf;
-  background-color: #2196F3;
-}
-
-.archive .creationDate {
-  border: 1px solid lightgrey;
-  background-color: #ccc;
-  color: darkslategray;
-}
-
-.taskBtn {
-  height: 22px;
-  background: transparent;
-  border: 1px solid deepskyblue;
-  margin: 0 auto;
-}
-
-.taskBtn:hover {
-  cursor: pointer;
-  background-color: deepskyblue;
-  color: white;
-}
-
-.taskColorMark {
-  width: 5px;
-  height: 35px;
-  position: relative;
-  left: 35px;
-}

@@ -17,6 +17,7 @@ class Footer extends React.Component<int.IFooter> {
                     </div>
                     <div className="viewed">
                         <button onClick={this.props.filter.bind(this, '')} title="Show all">Total (<b>{this.props.total}</b>)</button>
+                        <button onClick={this.props.filter.bind(this, 'notFavorite')} title="Favorite">Favorite (<b>{this.props.favorite}</b>)</button>
                         <button onClick={this.props.filter.bind(this, 'archive')} title="Show only active">Active (<b>{this.props.total - this.props.arhive}</b>)</button>
                         <button onClick={this.props.filter.bind(this, 'active')} title="Show only archived">Archive (<b>{this.props.arhive}</b>)</button>
                     </div>

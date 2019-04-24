@@ -8,6 +8,7 @@ export default function(task: string[]) {
             creationDate: new Date().toLocaleString('ru', { day: 'numeric', month: 'numeric', year: 'numeric' }),
             id: getID(),
             isDone: false,
+            favorite: false,
             color: task[1],
             task: task[0]
         }

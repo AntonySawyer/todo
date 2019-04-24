@@ -7,3 +7,7 @@ body {
   outline: 0;
   outline-offset: 0;
 }
+
+.isHidden {
+  display: none; 
+}

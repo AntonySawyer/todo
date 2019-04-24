@@ -62,6 +62,15 @@ header {
   cursor: pointer;
 }
 
+.menuBar{
+  width: 35px;
+  height: 30px;
+  margin: 10px 10px;
+  position: relative;
+  cursor: pointer;
+  float: left;
+}
+
 @media only screen 
   and (max-device-width: 736px)
   and (orientation: landscape) {

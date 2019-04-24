@@ -5,12 +5,17 @@ export default function reducer(state: int.ITask[] = [], action: int.IAction) {
         case 'ADD_TASK':
             return [...state, action.payload];
         break;
+        case 'CHANGE_STAR':
+        const starTarget = [...state].findIndex(el => el.id === action.payload);
+        [...state][starTarget].favorite = ![...state][starTarget].favorite;
+        return [...state];
+        break;
         case 'DELETE_TASK':
             return [...state.filter(el => el.id !== action.payload)];
         break;
         case 'COMPLETE_TASK':
-            const target = [...state].findIndex(el => el.id === action.payload);
-            [...state][target].isDone = ![...state][target].isDone;
+            const doneTarget = [...state].findIndex(el => el.id === action.payload);
+            [...state][doneTarget].isDone = ![...state][doneTarget].isDone;
             return [...state];
         break;
         case 'SORT_COMPLETED':
