@@ -1,0 +1,25 @@
+.sideWrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.sideBar {
+    position: fixed;
+    background-color: #2196f3;
+    height: calc(100vh - 110px);
+    width: 135px;
+    padding: 0px 20px;
+    font-size: 23px;
+    z-index: 2;
+}
+
+.sideBar ul {
+    flex-direction: column;
+}
+
+.sideBar ul li:hover {
+    cursor: pointer;
+    color: antiquewhite;
+}

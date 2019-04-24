@@ -35,6 +35,7 @@ class App extends Component<int.IAppProps> {
   sortCompleted() {
     this.props.dispatch({type: 'SORT_COMPLETED', payload: ''});
   }
+
   sortByDate() {
     this.props.dispatch({type: 'SORT_BY_DATE', payload: ''});
   }
@@ -104,7 +105,11 @@ class App extends Component<int.IAppProps> {
         <Header inputGroup={this.inputGroup.bind(this)} />
         <main>
           <Sidebar />
-          <ul>
+          <section id="feature" className="screen isHidden">
+            <h2>Some features will be here in future.</h2>
+          </section>
+
+          <ul id="taskList" className="screen">
             {this.props.tasks.map(el =>
                 <TaskItem key={el.id}
                   id={el.id}

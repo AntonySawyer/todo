@@ -9,10 +9,13 @@ class Header extends React.Component<int.IHeader> {
         const sideBar = document.querySelectorAll('.sideBar')[0];
         if (sideBar.classList.contains('isHidden')) {
             sideBar.classList.remove('isHidden');
+            document.querySelectorAll('.sideWrapper')[0].classList.remove('isHidden');
         } else {
             sideBar.classList.add('isHidden');
+            document.querySelectorAll('.sideWrapper')[0].classList.add('isHidden');
         }
     }
+
     render() {
         return ( 
             <header>
